@@ -75,9 +75,10 @@ class UserController extends Controller
             $request->validate([
                 'name' => ['required', 'string', 'max:255'],
                 // 'username' => ['required', 'string', 'max:255', 'unique:users'],
-                'nopol' => ['required', 'string', 'max:255', 'unique:users'],
+                // validate 
+                'nopol' => ['required', 'string', 'max:255', 'unique:users', 'regex:/^[A-Z]{2}[0-9]{1,4}[A-Z]{1,3}$/'],
                 'password' => ['required', 'string', new Password],
-                // 'phone' =>  ['required', 'string', 'max:255'], 
+                'phone' =>  ['required', 'string', 'max:255'], 
             ]);
 
             User::create([
@@ -85,7 +86,7 @@ class UserController extends Controller
                 'nopol' => $request->nopol,
                 // 'username' => $request->username,
                 'password' => Hash::make($request->password),
-                // 'phone' => $request->phone,
+                'phone' => $request->phone,
             ]);
 
             $user = User::where('nopol', $request->nopol)->first();
