@@ -35,7 +35,8 @@ class TransactionController extends Controller
         }
 
         $transaction = Transaction::with(['items.product'])->where('users_id', Auth::user()->id);
-
+        // $transaction = Transaction::with(['items.product'])->where('users_phone', Auth::user()->phone);
+        
         if($status)
             $transaction->where('status', $status);
 
@@ -54,6 +55,7 @@ class TransactionController extends Controller
         $request->validate([
             'items' => 'required|array',
             'items.*.id' => 'exists:products,id',
+            // TODO :: ADD VALIDATION FOR ADDRESS, TOTAL POINT
             'total_price' => 'required',
             'shipping_price' => 'required',
             'status' => 'required|in:PENDING,SUCCESS,CANCELLED,FAILED,SHIPPING,SHIPPED',
@@ -61,13 +63,16 @@ class TransactionController extends Controller
 
         $transaction = Transaction::create([
             'users_id' => Auth::user()->id,
+            'users_phone' => Auth::user()->phone,
             'address' => $request->address,
             'total_price' => $request->total_price,
+            'total_point' => $request->total_point,
             'shipping_price' => $request->shipping_price,
             'status' => $request->status
+
         ]);
         
-        foreach ($request->items as $product) {
+        foreach ($request->items as  $product) {
             TransactionItem::create([
                 'users_id' => Auth::user()->id,
                 'products_id' => $product['id'],

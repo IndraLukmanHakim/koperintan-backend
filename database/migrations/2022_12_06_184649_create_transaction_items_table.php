@@ -22,6 +22,8 @@ class CreateTransactionItemsTable extends Migration
             $table->bigInteger('quantity');
 
             $table->timestamps();
+
+            
         });
     }
 
