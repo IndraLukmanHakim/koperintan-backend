@@ -15,21 +15,14 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            
             $table->bigInteger('users_id');
-            
             $table->string('users_phone')->nullable()->default(0);
             $table->text('address')->nullable();
-
             $table->bigInteger('total_price')->default(0);
             $table->bigInteger('total_point')->default(0);
             $table->float('shipping_price')->default(0);
-
-
             $table->string('status')->default('PENDING');
-
             $table->string('payment')->default('MANUAL');
-            
             $table->softDeletes();
             $table->timestamps();
         });

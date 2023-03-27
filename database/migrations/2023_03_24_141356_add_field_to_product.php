@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('product', function (Blueprint $table) {
-            $table->int('point')->after('price')->default(0);
+        Schema::table('products', function (Blueprint $table) {
+            $table->integer('point')->after('price')->default(0);
             //
         });
     }
