@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             "password" => bcrypt("12345678"),
             "point" => 0,
             "phone" => "08123456789",
+            "roles" => "ADMIN",
         ]);
     }
 }

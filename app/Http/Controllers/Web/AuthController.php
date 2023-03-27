@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,10 +16,19 @@ class AuthController extends Controller
 
     public function loginAuth(Request $request)
     {
-        $credentials = $request->only('nopol', 'password');
-        if (Auth::attempt($credentials)) {
-            return redirect("/");
+        $user = User::where('nopol', $request->nopol)->first();
+        if ($user->roles == 'ADMIN') {
+            $credentials = $request->only('nopol', 'password');
+            if (Auth::attempt($credentials)) {
+                return redirect("/");
+            }
         }
-        return back()->with('error', 'The provided credentials do not match our records.');
+        return back()->with('error', 'Nopol atau Password Salah');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        return redirect()->route('login');
     }
 }

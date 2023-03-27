@@ -73,31 +73,28 @@
 					</div>
 					<!-- END Menu Section -->
 					<div class="menu-item">
-						<button class="menu-item-link menu-item-toggle">
+						<a href="/user" data-menu-path="/user" class="menu-item-link">
 							<div class="menu-item-icon">
-								<i class="fa fa-car"></i>
+								<i class="fa fa-user"></i>
 							</div>
-							<span class="menu-item-text">Peminjaman</span>
-							<div class="menu-item-addon">
-								<i class="menu-item-caret caret"></i>
+							<span class="menu-item-text">Kelola User</span>
+						</a>
+					</div>
+					<div class="menu-item">
+						<a href="/produk" data-menu-path="/produk" class="menu-item-link">
+							<div class="menu-item-icon">
+								<i class="fa fa-box"></i>
 							</div>
-						</button>
-						<!-- BEGIN Menu Submenu -->
-						<div class="menu-submenu">
-							<div class="menu-item">
-								<a href="#" data-menu-path="#" class="menu-item-link">
-									<i class="menu-item-bullet"></i>
-									<span class="menu-item-text">Data Pengajuan</span>
-								</a>
+							<span class="menu-item-text">Kelola Produk</span>
+						</a>
+					</div>
+					<div class="menu-item">
+						<a href="/transaksi" data-menu-path="/transaksi" class="menu-item-link">
+							<div class="menu-item-icon">
+								<i class="fa fa-money-bill"></i>
 							</div>
-							<div class="menu-item">
-								<a href="#" data-menu-path="#" class="menu-item-link">
-									<i class="menu-item-bullet"></i>
-									<span class="menu-item-text">Data Rekapitulasi</span>
-								</a>
-							</div>
-						</div>
-						<!-- END Menu Submenu -->
+							<span class="menu-item-text">Kelola Transaksi</span>
+						</a>
 					</div>
 				</div>
 				<!-- END Menu -->
@@ -130,7 +127,7 @@
 							<!-- BEGIN Dropdown -->
 							<div class="dropdown">
 								<button class="btn btn-flat-primary widget13" data-bs-toggle="dropdown">
-									<div class="widget13-text">Hi <strong>{{ Auth::user()->nama }}</strong>
+									<div class="widget13-text">Hi <strong>{{ Auth::user()->name }}</strong>
 									</div>
 									<!-- BEGIN Avatar -->
 									<div class="avatar avatar-info widget13-avatar">
@@ -156,7 +153,7 @@
 													<!-- END Avatar -->
 												</div>
 												<div class="rich-list-content">
-													<h3 class="rich-list-title text-white thumbnail-fullname">{{ Auth::user()->nama }}</h3>
+													<h3 class="rich-list-title text-white thumbnail-fullname">{{ Auth::user()->name }}</h3>
 													<span class="rich-list-subtitle text-white thumbnail-email">{{ Auth::user()->email }}</span>
 												</div>
 											</div>
@@ -183,7 +180,10 @@
 											<!-- END Grid Nav -->
 										</div>
 										<div class="portlet-footer portlet-footer-bordered rounded-0">
-											<button type="button" class="btn btn-label-danger logout-trigger btn-logout">Keluar</button>
+											<form action="/logout" method="post">
+												@csrf
+												<button type="button" class="btn btn-label-danger logout-trigger btn-logout">Keluar</button>
+											</form>
 										</div>
 									</div>
 									<!-- END Portlet -->
@@ -211,7 +211,7 @@
 								<!-- BEGIN Dropdown -->
 								<div class="dropdown">
 									<button class="btn btn-flat-primary widget13" data-bs-toggle="dropdown">
-										<div class="widget13-text">Hi <strong>{{ Auth::user()->nama }}</strong>
+										<div class="widget13-text">Hi <strong>{{ Auth::user()->name }}</strong>
 										</div>
 										<!-- BEGIN Avatar -->
 										<div class="avatar avatar-info widget13-avatar">
@@ -237,7 +237,7 @@
 														<!-- END Avatar -->
 													</div>
 													<div class="rich-list-content">
-														<h3 class="rich-list-title text-white thumbnail-fullname">{{ Auth::user()->nama }}</h3>
+														<h3 class="rich-list-title text-white thumbnail-fullname">{{ Auth::user()->name }}</h3>
 														<span class="rich-list-subtitle text-white thumbnail-email">{{ Auth::user()->email }}</span>
 													</div>
 												</div>
@@ -264,7 +264,10 @@
 												<!-- END Grid Nav -->
 											</div>
 											<div class="portlet-footer portlet-footer-bordered rounded-0">
-												<button type="button" class="btn btn-label-danger logout-trigger btn-logout">Keluar</button>
+												<form action="/logout" method="post">
+													@csrf
+													<button type="button" class="btn btn-label-danger logout-trigger btn-logout">Keluar</button>
+												</form>
 											</div>
 										</div>
 									</div>
