@@ -35,7 +35,7 @@
 										@csrf 
 										<div class="validation-container">
 											<div class="form-floating">
-												<input class="form-control form-control-lg @error('nopol') is-invalid @enderror" type="nopol" id="nopol" name="nopol" placeholder="Please insert your nopol" value="@if(old('nopol')) {{ old('nopol') }} @else {{ session('nopol') }} @endif">
+												<input class="form-control form-control-lg @error('nopol') is-invalid @enderror" type="text" id="nopol" name="nopol" placeholder="Please insert your nopol" value="@if(old('nopol')) {{ old('nopol') }} @else {{ session('nopol') }} @endif">
 												<label for="nopol">Nopol</label>
 												@error('nopol')
 													<div class="invalid-feedback">{{ $message }}</div>
