@@ -20,13 +20,13 @@ class UserController extends Controller
         <input type='hidden' name='id' value='$user->id'>
         <div class='validation-container mb-4'>
             <div class='form-floating'>
-                <input type='text' class='form-control' id='name' name='name' placeholder='Nama' value='$user->name'>
+                <input type='text' class='form-control' id='name' name='name_update' placeholder='Nama' value='$user->name'>
                 <label for='name'>Nama</label>
             </div>
         </div>
         <div class='validation-container mb-4'>
             <div class='form-floating'>
-                <input type='text' class='form-control' id='phone' name='phone' placeholder='Phone' value='$user->phone'>
+                <input type='text' class='form-control' id='phone' name='phone_update' placeholder='Phone' value='$user->phone'>
                 <label for='phone'>Phone</label>
             </div>
         </div>
@@ -63,17 +63,17 @@ class UserController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'phone' => 'required',
+            'name_update' => 'required',
+            'phone_update' => 'required',
         ], [
-            'name.required' => 'Nama tidak boleh kosong',
-            'nopol.required' => 'Nopol tidak boleh kosong',
+            'name_update.required' => 'Nama tidak boleh kosong',
+            'nopol_update.required' => 'Nopol tidak boleh kosong',
         ]);
 
         $user = User::find($request->id);
         $user->update([
-            'name' => $request->name,
-            'phone' => $request->phone,
+            'name' => $request->name_update,
+            'phone' => $request->phone_update,
         ]);
 
         return redirect()->back()->with('success', 'User berhasil diubah');

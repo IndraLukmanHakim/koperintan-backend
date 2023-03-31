@@ -213,4 +213,16 @@
   });
 </script>
 @endif
+
+{{-- if error any show swal --}}
+@if ($errors->any())
+<script>
+  Swal.fire({
+    title: 'Gagal',
+    text: "Data gagal disimpan",
+    icon: 'error',
+    showConfirmButton: true,
+  });
+</script>
+@endif
 @endsection
