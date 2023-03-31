@@ -14,6 +14,26 @@ class UserController extends Controller
         return view('pages.user', compact('users'));
     }
 
+    public function get(User $user)
+    {
+        $html = "
+        <input type='hidden' name='id' value='$user->id'>
+        <div class='validation-container mb-4'>
+            <div class='form-floating'>
+                <input type='text' class='form-control' id='name' name='name' placeholder='Nama' value='$user->name'>
+                <label for='name'>Nama</label>
+            </div>
+        </div>
+        <div class='validation-container mb-4'>
+            <div class='form-floating'>
+                <input type='text' class='form-control' id='phone' name='phone' placeholder='Phone' value='$user->phone'>
+                <label for='phone'>Phone</label>
+            </div>
+        </div>
+        ";
+        return response()->json($html);
+    }
+
     public function create(Request $request)
     {
         $request->validate([
@@ -38,6 +58,25 @@ class UserController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'User berhasil ditambahkan');
+    }
+
+    public function update(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'phone' => 'required',
+        ], [
+            'name.required' => 'Nama tidak boleh kosong',
+            'nopol.required' => 'Nopol tidak boleh kosong',
+        ]);
+
+        $user = User::find($request->id);
+        $user->update([
+            'name' => $request->name,
+            'phone' => $request->phone,
+        ]);
+
+        return redirect()->back()->with('success', 'User berhasil diubah');
     }
 
     public function delete(User $user)

@@ -14,7 +14,7 @@
           @csrf
           {{-- input nama, nopol, phone, password with validation error --}}
           <div class="row">
-            <div class="col-md-6 mb-3">
+            <div class="col-md-6 mb-4">
               <div class="form-floating">
                 <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Nama" value="{{ old('name') }}">
                 <label for="name">Nama</label>
@@ -25,7 +25,7 @@
                 @enderror
               </div>
             </div>
-            <div class="col-md-6 mb-3">
+            <div class="col-md-6 mb-4">
               <div class="form-floating">
                 <input type="text" class="form-control @error('nopol') is-invalid @enderror" id="nopol" name="nopol" placeholder="Nomor Polisi" value="{{ old('nopol') }}">
                 <label for="nopol">Nomor Polisi</label>
@@ -36,7 +36,7 @@
                 @enderror
               </div>
             </div>
-            <div class="col-md-6 mb-3">
+            <div class="col-md-6 mb-4">
               <div class="form-floating">
                 <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" placeholder="Nomor Telepon" value="{{ old('phone') }}">
                 <label for="phone">Nomor Telepon</label>
@@ -47,7 +47,7 @@
                 @enderror
               </div>
             </div>
-            <div class="col-md-6 mb-3">
+            <div class="col-md-6 mb-4">
               <div class="form-floating">
                 <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" placeholder="Password" value="{{ old('password') }}">
                 <label for="password">Password</label>
@@ -105,6 +105,29 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="modal-edit" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit User</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="/user/update" method="POST">
+        @csrf
+        <div class="modal-body modal-edit-body">
+          {{--  --}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+          <button type="submit" class="btn btn-primary">Simpan</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
@@ -167,7 +190,14 @@
 
     $("#table-1").on('click', 'tbody tr td .btn-edit',function () {
       let id = $(this).data("id");
-      window.location.href = "{{ url('user/edit') }}" + "/" + id;
+      $.ajax({
+        url: "/user/get/" + id,
+        type: "GET",
+        success: function (data) {
+          $(".modal-edit-body").html(data);
+          $("#edit-modal").modal("show");
+        },
+      });
     });
   });
 </script>

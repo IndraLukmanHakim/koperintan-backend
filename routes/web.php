@@ -26,7 +26,9 @@ Route::middleware(['auth'])->group(function () {
 
   Route::get('/', [DashboardController::class, 'index']);
   Route::get('/user', [UserController::class, 'index']);
+  Route::get('/user/get/{user}', [UserController::class, 'get']);
   Route::post('/user/create', [UserController::class, 'create']);
+  Route::post('/user/update', [UserController::class, 'update']);
   Route::delete('/user/delete/{user}', [UserController::class, 'delete']);
 
   Route::get('/produk', [ProductController::class, 'index']);
