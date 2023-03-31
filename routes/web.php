@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\Web\AuthController;
 use App\Http\Controllers\Web\DashboardController;
+use App\Http\Controllers\Web\ProductController;
+use App\Http\Controllers\Web\TransactionController;
+use App\Http\Controllers\Web\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,10 +22,16 @@ Route::get("/login", [AuthController::class, 'login'])->name('login');
 Route::post("/login", [AuthController::class, 'loginAuth'])->middleware('guest');
 
 Route::middleware(['auth'])->group(function () {
-  Route::get('/', [DashboardController::class, 'index']);
   Route::post("/logout", [AuthController::class, 'logout']);
-});
 
+  Route::get('/', [DashboardController::class, 'index']);
+  Route::get('/user', [UserController::class, 'index']);
+  Route::post('/user/create', [UserController::class, 'create']);
+  Route::delete('/user/delete/{user}', [UserController::class, 'delete']);
+
+  Route::get('/produk', [ProductController::class, 'index']);
+  Route::get('/transaksi', [TransactionController::class, 'index']);
+});
 // Route::middleware([
 //     'auth:sanctum',
 //     config('jetstream.auth_session'),

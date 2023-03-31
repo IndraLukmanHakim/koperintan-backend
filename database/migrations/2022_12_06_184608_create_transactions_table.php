@@ -19,7 +19,7 @@ class CreateTransactionsTable extends Migration
             $table->string('users_phone')->nullable()->default(0);
             $table->text('address')->nullable();
             $table->bigInteger('total_price')->default(0);
-            $table->bigInteger('total_point')->default(0);
+            $table->bigInteger('total_point')->default(0)->nullable();
             $table->float('shipping_price')->default(0);
             $table->string('status')->default('PENDING');
             $table->string('payment')->default('MANUAL');
