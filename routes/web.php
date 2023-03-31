@@ -25,13 +25,21 @@ Route::middleware(['auth'])->group(function () {
   Route::post("/logout", [AuthController::class, 'logout']);
 
   Route::get('/', [DashboardController::class, 'index']);
+
   Route::get('/user', [UserController::class, 'index']);
   Route::get('/user/get/{user}', [UserController::class, 'get']);
   Route::post('/user/create', [UserController::class, 'create']);
   Route::post('/user/update', [UserController::class, 'update']);
-  Route::delete('/user/delete/{user}', [UserController::class, 'delete']);
+  Route::post('/user/delete/{user}', [UserController::class, 'delete']);
 
   Route::get('/produk', [ProductController::class, 'index']);
+  Route::get('/produk/get/{product}', [ProductController::class, 'get']);
+  Route::post('/produk/create', [ProductController::class, 'create']);
+  Route::post('/produk/update', [ProductController::class, 'update']);
+  Route::post('/produk/delete/{product}', [ProductController::class, 'delete']);
+
+  Route::get('/produk/gallery', [ProductController::class, 'gallery']);
+
   Route::get('/transaksi', [TransactionController::class, 'index']);
 });
 // Route::middleware([

@@ -154,7 +154,7 @@
         if (result.value) {
           $.ajax({
             url: "{{ url('user/delete') }}" + "/" + id,
-            type: "DELETE",
+            type: "POST",
             data: {
               id: id,
               _token: "{{ csrf_token() }}"

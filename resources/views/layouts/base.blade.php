@@ -80,13 +80,40 @@
 							<span class="menu-item-text">Kelola User</span>
 						</a>
 					</div>
-					<div class="menu-item">
+					{{-- <div class="menu-item">
 						<a href="/produk" data-menu-path="/produk" class="menu-item-link">
 							<div class="menu-item-icon">
 								<i class="fa fa-box"></i>
 							</div>
 							<span class="menu-item-text">Kelola Produk</span>
 						</a>
+					</div> --}}
+					<div class="menu-item">
+						<button class="menu-item-link menu-item-toggle">
+							<div class="menu-item-icon">
+								<i class="fa fa-box"></i>
+							</div>
+							<span class="menu-item-text">Produk</span>
+							<div class="menu-item-addon">
+								<i class="menu-item-caret caret"></i>
+							</div>
+						</button>
+						<!-- BEGIN Menu Submenu -->
+						<div class="menu-submenu">
+							<div class="menu-item">
+								<a href="/produk" data-menu-path="/produk" class="menu-item-link">
+									<i class="menu-item-bullet"></i>
+									<span class="menu-item-text">Kelola Produk</span>
+								</a>
+							</div>
+							<div class="menu-item">
+								<a href="/produk/gallery" data-menu-path="/produk/gallery" class="menu-item-link">
+									<i class="menu-item-bullet"></i>
+									<span class="menu-item-text">Gallery Produk</span>
+								</a>
+							</div>
+						</div>
+						<!-- END Menu Submenu -->
 					</div>
 					<div class="menu-item">
 						<a href="/transaksi" data-menu-path="/transaksi" class="menu-item-link">
