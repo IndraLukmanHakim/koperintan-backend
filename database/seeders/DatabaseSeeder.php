@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\ProductCategory;
+use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -48,5 +49,16 @@ class DatabaseSeeder extends Seeder
                 "name" => $category,
             ]);
         }
+
+        Transaction::create([
+            "users_id" => 1,
+            "users_phone" => "08123456789",
+            "address" => "Jl. Kebon Jeruk No. 1",
+            "total_price" => 100000,
+            "total_point" => 100000,
+            "shipping_price" => 0,
+            "status" => "Pending",
+            "payment" => "MANUAL",
+        ]);
     }
 }

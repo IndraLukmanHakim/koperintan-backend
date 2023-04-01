@@ -3,6 +3,7 @@
 use App\Http\Controllers\Web\AuthController;
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\ProductController;
+use App\Http\Controllers\Web\ProductGalleryController;
 use App\Http\Controllers\Web\TransactionController;
 use App\Http\Controllers\Web\UserController;
 use Illuminate\Support\Facades\Route;
@@ -38,10 +39,13 @@ Route::middleware(['auth'])->group(function () {
   Route::post('/produk/update', [ProductController::class, 'update']);
   Route::post('/produk/delete/{product}', [ProductController::class, 'delete']);
 
-  Route::get('/produk/gallery', [ProductController::class, 'gallery']);
+  Route::get('/produk/gallery', [ProductGalleryController::class, 'index']);
 
   Route::get('/transaksi', [TransactionController::class, 'index']);
+  Route::post('/transaksi/update-status/{transaction}', [TransactionController::class, 'updateStatus']);
 });
+
+
 // Route::middleware([
 //     'auth:sanctum',
 //     config('jetstream.auth_session'),

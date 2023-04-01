@@ -129,9 +129,4 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->back()->with('success', 'Produk berhasil dihapus');
     }
-
-    public function gallery()
-    {
-        return view('pages.produk-gallery');
-    }
 }
