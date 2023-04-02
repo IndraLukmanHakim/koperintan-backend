@@ -43,6 +43,7 @@ Route::middleware(['auth'])->group(function () {
 
   Route::get('/transaksi', [TransactionController::class, 'index']);
   Route::post('/transaksi/update-status/{transaction}', [TransactionController::class, 'updateStatus']);
+  Route::get('/transaksi/detail/{transaction}', [TransactionController::class, 'detail']);
 });
 
 

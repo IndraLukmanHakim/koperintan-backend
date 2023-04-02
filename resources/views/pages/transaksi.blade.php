@@ -26,7 +26,7 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $transaction->user->name }}</td>
                     <td>{{ $transaction->user->phone }}</td>
-                    <td>Rp. {{ number_format($transaction->total_price) }}</td>
+                    <td>Rp. {{ number_format($transaction->total_price, 0, ',', '.') }}</td>
                     <td>
                       <select name="status" class="form-control select-status" data-id="{{ $transaction->id }}">
                         @foreach ($status as $s)
@@ -54,7 +54,7 @@
   </div>
 </div>
 
-<div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="modal-edit" aria-hidden="true">
+<div class="modal fade" id="detail-modal" tabindex="-1" role="dialog" aria-labelledby="modal-edit" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -63,16 +63,12 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="/produk/update" method="POST">
-        @csrf
-        <div class="modal-body modal-edit-body">
+        <div class="modal-body modal-detail-body">
           {{--  --}}
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-          <button type="submit" class="btn btn-primary">Simpan</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tutup</button>
         </div>
-      </form>
     </div>
   </div>
 </div>
@@ -102,6 +98,19 @@
               showConfirmButton: false,
               timer: 1500
             });
+          },
+        });
+      });
+
+      $("#table-1").on('click', 'tbody tr td .btn-show',function () {
+        let id = $(this).data("id");
+        $.ajax({
+          url: "{{ url('transaksi/detail') }}" + "/" + id,
+          type: "GET",
+          success: function (data) {
+            console.log(data);
+            $(".modal-detail-body").html(data);
+            $("#detail-modal").modal("show");
           },
         });
       });

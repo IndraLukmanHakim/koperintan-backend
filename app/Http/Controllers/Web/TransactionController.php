@@ -29,4 +29,42 @@ class TransactionController extends Controller
 
         return true;
     }
+
+    public function detail(Transaction $transaction)
+    {
+        $html = "
+          <table class='table table-borderless'>
+            <thead>
+              <tr>
+                <th>Nama Produk</th>
+                <th>Harga</th>
+                <th>Jumlah</th>
+                <th>Total Harga</th>
+              </tr>
+            </thead>
+            <tbody>
+        ";
+        foreach ($transaction->items as $item) {
+            $html .= "
+              <tr>
+                <td>" . $item->product->name . "</td>" .
+                "<td>Rp. " . number_format($item->product->price, 0, ',', '.') . "</td>" .
+                "<td>" . $item->quantity . "</td>" .
+                "<td>Rp. " . number_format($item->quantity * $item->product->price, 0, ',', '.') . "</td>
+              </tr>
+            ";
+        }
+        $html .= "
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan='3'><strong>Total Harga</strong></td>
+                <td><strong>Rp. " . number_format($transaction->total_price, 0, ',', '.') . "</strong></td>
+              </tr>
+            </tfoot>
+          </table>
+        ";
+
+        return response()->json($html);
+    }
 }
