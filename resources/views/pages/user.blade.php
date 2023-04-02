@@ -6,7 +6,7 @@
   <div class="col-md-12 mb-3">
     <div class="card">
       <div class="card-header bg-white">
-        <h4>Tambah User</h4>
+        <h4 class="card-title">Tambah User</h4>
       </div>
       <div class="card-body">
         {{-- form tambah user --}}
@@ -66,6 +66,9 @@
   </div>
   <div class="col-md-12">
     <div class="card">
+      <div class="card-header bg-white">
+        <h4 class="card-title">User List</h4>
+      </div>
       <div class="card-body">
         <div class="row">
           <div class="col-md-12">

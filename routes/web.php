@@ -40,6 +40,9 @@ Route::middleware(['auth'])->group(function () {
   Route::post('/produk/delete/{product}', [ProductController::class, 'delete']);
 
   Route::get('/produk/gallery', [ProductGalleryController::class, 'index']);
+  Route::get('/produk/gallery/{product}', [ProductGalleryController::class, 'kelola']);
+  Route::post('/produk/gallery/create/{product}', [ProductGalleryController::class, 'create']);
+  Route::post('/produk/gallery/delete/{productGallery}', [ProductGalleryController::class, 'delete']);
 
   Route::get('/transaksi', [TransactionController::class, 'index']);
   Route::post('/transaksi/update-status/{transaction}', [TransactionController::class, 'updateStatus']);

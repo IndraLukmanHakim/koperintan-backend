@@ -15,10 +15,10 @@ class ProductGallery extends Model
         'products_id', 'url', 'is_featured'
     ];
 
-    
+
     public function getUrlAttribute($url)
     {
-        return "http://10.162.1.11:8000" . Storage::url($url);
+        return "http://localhost:8000" . Storage::url($url);
 
         // RETURN GALLERY URL LOCAL
         // return config('app.url') . Storage::url($url);
