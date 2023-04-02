@@ -51,22 +51,24 @@
         </tr>
       </thead>
       <tbody>
+        @foreach ($transaction->items as $item)
         <tr align="justify">
-          <td>AWdawd</td>
-          <td>Rp. 10.000</td>
-          <td>2</td>
-          <td>Rp. 20.000</td>
+          <td>{{ $item->product->name }}</td>
+          <td>Rp. {{ number_format($item->product->price, 0, ',', '.') }}</td>
+          <td>{{ $item->quantity }}</td>
+          <td>Rp. {{ number_format($item->quantity * $item->product->price, 0, ',', '.') }}</td>
         </tr>
+        @endforeach
       </tbody>
       <tfoot>
         <tr>
           <td colspan="3"><strong>Total Harga</strong></td>
-          <td><strong>Rp. 20.000</strong></td>
+          <td>Rp. {{ number_format($transaction->total_price, 0, ',', '.') }}</td>
         </tr>
       </tfoot>
     </table>
 
     <p style="margin-top: 32px; font-size: 12px; text-align: center">Terima kasih telah berbelanja di Toko Kami</p>
-    
+
 </body>
 </html>
