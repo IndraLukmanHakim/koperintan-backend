@@ -186,26 +186,6 @@
 											</div>
 											<!-- END Rich List Item -->
 										</div>
-										<div class="portlet-body p-0">
-											<!-- BEGIN Grid Nav -->
-											<div class="grid-nav grid-nav-flush grid-nav-action grid-nav-no-rounded">
-												<div class="grid-nav-row">
-													<a href="/profile" class="grid-nav-item">
-														<div class="grid-nav-icon">
-															<i class="far fa-address-card"></i>
-														</div>
-														<span class="grid-nav-content">Profile</span>
-													</a>
-													<a href="/profile/ubah-password" class="grid-nav-item">
-														<div class="grid-nav-icon">
-															<i class="fas fa-key"></i>
-														</div>
-														<span class="grid-nav-content">Ubah Password</span>
-													</a>
-												</div>
-											</div>
-											<!-- END Grid Nav -->
-										</div>
 										<div class="portlet-footer portlet-footer-bordered rounded-0">
 											<form action="/logout" method="post">
 												@csrf
@@ -269,26 +249,6 @@
 													</div>
 												</div>
 												<!-- END Rich List Item -->
-											</div>
-											<div class="portlet-body p-0">
-												<!-- BEGIN Grid Nav -->
-												<div class="grid-nav grid-nav-flush grid-nav-action grid-nav-no-rounded">
-													<div class="grid-nav-row">
-														<a href="/profile" class="grid-nav-item">
-															<div class="grid-nav-icon">
-																<i class="far fa-address-card"></i>
-															</div>
-															<span class="grid-nav-content">Profile</span>
-														</a>
-														<a href="/profile/ubah-password" class="grid-nav-item">
-															<div class="grid-nav-icon">
-																<i class="fas fa-key"></i>
-															</div>
-															<span class="grid-nav-content">Ubah Password</span>
-														</a>
-													</div>
-												</div>
-												<!-- END Grid Nav -->
 											</div>
 											<div class="portlet-footer portlet-footer-bordered rounded-0">
 												<form action="/logout" method="post">
