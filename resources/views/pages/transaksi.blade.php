@@ -37,13 +37,16 @@
                         @endforeach
                       </select>
                     </td>
-                    <td>
+                    <td >
                       <button type="button" class="btn btn-sm btn-primary btn-show" data-id="{{ $transaction->id }}">
                         <i class="fa fa-eye"></i>
                       </button>
-                      <button type="button" class="btn btn-sm btn-danger btn-invoice" data-id="{{ $transaction->id }}">
-                        <i class="fa fa-download"></i>
-                      </button>
+                      <form class="d-inline" action="/transaksi/invoice/{{ $transaction->id }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-sm btn-danger btn-invoice" data-id="{{ $transaction->id }}">
+                          <i class="fa fa-download"></i>
+                        </button>
+                      </form>
                     </td>
                   </tr>
                   @endforeach
@@ -117,54 +120,6 @@
           },
         });
       });
-
-      // $("#table-1").on('click', 'tbody tr td .btn-hapus',function () {
-      //   let id = $(this).data("id");
-      //   Swal.fire({
-      //     title: 'Konfirmasi Hapus',
-      //     text: "Apakah anda yakin ingin menghapus data ini?",
-      //     icon: 'warning',
-      //     showCancelButton: true,
-      //     confirmButtonColor: '#3085d6',
-      //     cancelButtonColor: '#d33',
-      //     confirmButtonText: 'Hapus',
-      //     cancelButtonText: 'Batal'
-      //   }).then((result) => {
-      //     if (result.value) {
-      //       $.ajax({
-      //         url: "{{ url('produk/delete') }}" + "/" + id,
-      //         type: "POST",
-      //         data: {
-      //           id: id,
-      //           _token: "{{ csrf_token() }}"
-      //         },
-      //         success: function (response) {
-      //           Swal.fire({
-      //             title: 'Sukses',
-      //             text: "Data berhasil dihapus",
-      //             icon: 'success',
-      //             showConfirmButton: false,
-      //             timer: 1500
-      //           }).then(function () {
-      //             location.reload();
-      //           });
-      //         },
-      //       });
-      //     }
-      //   });
-      // });
-
-      // $("#table-1").on('click', 'tbody tr td .btn-edit',function () {
-      //   let id = $(this).data("id");
-      //   $.ajax({
-      //     url: "/produk/get/" + id,
-      //     type: "GET",
-      //     success: function (data) {
-      //       $(".modal-edit-body").html(data);
-      //       $("#edit-modal").modal("show");
-      //     },
-      //   });
-      // });
     });
   </script>
   @if (session('success'))

@@ -8,31 +8,31 @@ use Illuminate\Http\Request;
 
 class TransactionController extends Controller
 {
-    public function index()
-    {
-        $status = [
-            "Pending",
-            "Shipping",
-            "Cancelled",
-            "Failed",
-            "Selesai"
-        ];
+  public function index()
+  {
+    $status = [
+      "Pending",
+      "Shipping",
+      "Cancelled",
+      "Failed",
+      "Selesai"
+    ];
 
-        $transactions = Transaction::with('user', 'items', 'items.product')->get();
-        return view('pages.transaksi', compact('transactions', 'status'));
-    }
+    $transactions = Transaction::with('user', 'items', 'items.product')->get();
+    return view('pages.transaksi', compact('transactions', 'status'));
+  }
 
-    public function updateStatus(Transaction $transaction, Request $request)
-    {
-        $transaction->status = $request->status;
-        $transaction->save();
+  public function updateStatus(Transaction $transaction, Request $request)
+  {
+    $transaction->status = $request->status;
+    $transaction->save();
 
-        return true;
-    }
+    return true;
+  }
 
-    public function detail(Transaction $transaction)
-    {
-        $html = "
+  public function detail(Transaction $transaction)
+  {
+    $html = "
           <table class='table table-borderless'>
             <thead>
               <tr>
@@ -44,17 +44,17 @@ class TransactionController extends Controller
             </thead>
             <tbody>
         ";
-        foreach ($transaction->items as $item) {
-            $html .= "
+    foreach ($transaction->items as $item) {
+      $html .= "
               <tr>
                 <td>" . $item->product->name . "</td>" .
-                "<td>Rp. " . number_format($item->product->price, 0, ',', '.') . "</td>" .
-                "<td>" . $item->quantity . "</td>" .
-                "<td>Rp. " . number_format($item->quantity * $item->product->price, 0, ',', '.') . "</td>
+        "<td>Rp. " . number_format($item->product->price, 0, ',', '.') . "</td>" .
+        "<td>" . $item->quantity . "</td>" .
+        "<td>Rp. " . number_format($item->quantity * $item->product->price, 0, ',', '.') . "</td>
               </tr>
             ";
-        }
-        $html .= "
+    }
+    $html .= "
             </tbody>
             <tfoot>
               <tr>
@@ -65,6 +65,15 @@ class TransactionController extends Controller
           </table>
         ";
 
-        return response()->json($html);
-    }
+    return response()->json($html);
+  }
+
+  public function invoice(Transaction $transaction)
+  {
+    $pdf = app('dompdf.wrapper');
+    $pdf->loadView('pdf.invoice', compact('transaction'));
+    $namaFile = "invoice-" . $transaction->id . date_format($transaction->created_at, 'dmY') . ".pdf";
+    return $pdf->download($namaFile);
+    return $pdf->stream();
+  }
 }
