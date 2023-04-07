@@ -17,8 +17,12 @@
                   <tr>
                     <th>No</th>
                     <th>Nama</th>
+                    <th>Nopol</th>
                     <th>No Telepon</th>
+                    <th>Alamat</th>
+                    <th>Item</th>
                     <th>Total Harga</th>
+                    <th>Poin</th>
                     <th>Status</th>
                     <th>Aksi</th>
                   </tr>
@@ -28,8 +32,19 @@
                   <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $transaction->user->name }}</td>
+                    <td>{{ $transaction->user->nopol }}</td>
                     <td>{{ $transaction->user->phone }}</td>
+                    <td>{{ $transaction->address }}</td>
+                    <td>
+                      {{-- looping item using ul none --}}
+                      <ul class="list-unstyled">
+                        @foreach ($transaction->items as $item)
+                          <li>{{ $item->quantity }} {{ $item->product->name }}</li>
+                        @endforeach
+                      </ul>
+                    </td>
                     <td>Rp. {{ number_format($transaction->total_price, 0, ',', '.') }}</td>
+                    <td>{{ $transaction->total_point }}</td>
                     <td>
                       <select name="status" class="form-control select-status" data-id="{{ $transaction->id }}">
                         @foreach ($status as $s)
@@ -38,9 +53,9 @@
                       </select>
                     </td>
                     <td >
-                      <button type="button" class="btn btn-sm btn-primary btn-show" data-id="{{ $transaction->id }}">
+                      {{-- <button type="button" class="btn btn-sm btn-primary btn-show" data-id="{{ $transaction->id }}">
                         <i class="fa fa-eye"></i>
-                      </button>
+                      </button> --}}
                       <form class="d-inline" action="/transaksi/invoice/{{ $transaction->id }}" method="POST">
                         @csrf
                         <button type="submit" class="btn btn-sm btn-danger btn-invoice" data-id="{{ $transaction->id }}">
