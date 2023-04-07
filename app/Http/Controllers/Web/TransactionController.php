@@ -14,7 +14,8 @@ class TransactionController extends Controller
 {
   public function export()
   {
-    return Excel::download(new TransactionExport, 'transactions.xlsx');
+    $namaFile = "transactions-" . date('d-m-Y') . ".xlsx";
+    return Excel::download(new TransactionExport, $namaFile);
   }
 
   public function index()

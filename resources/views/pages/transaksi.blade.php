@@ -5,9 +5,21 @@
 <div class="row">
   <div class="col-md-12">
     <div class="card">
+      {{-- card header with button export --}}
       <div class="card-header bg-white">
         <h4 class="card-title">Transaksi List</h4>
+        <div class="card-tools">
+          <form action="{{ url('transaksi/export') }}" method="GET">
+            @csrf
+            <button type="submit" class="btn btn-sm btn-info">
+              <i class="fa fa-download"></i> Export
+            </button>
+          </form>
+        </div>
       </div>
+      {{-- <div class="card-header bg-white">
+        <h4 class="card-title">Transaksi List</h4>
+      </div> --}}
       <div class="card-body">
         <div class="row">
           <div class="col-md-12">

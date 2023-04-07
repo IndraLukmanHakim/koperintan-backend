@@ -19,8 +19,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get("/export", [TransactionController::class, 'export']);
-
 Route::get("/login", [AuthController::class, 'login'])->name('login');
 Route::post("/login", [AuthController::class, 'loginAuth'])->middleware('guest');
 
@@ -50,6 +48,7 @@ Route::middleware(['auth'])->group(function () {
   Route::post('/transaksi/update-status/{transaction}', [TransactionController::class, 'updateStatus']);
   Route::get('/transaksi/detail/{transaction}', [TransactionController::class, 'detail']);
   Route::post('/transaksi/invoice/{transaction}', [TransactionController::class, 'invoice']);
+  Route::get("/transaksi/export", [TransactionController::class, 'export']);
 });
 
 
