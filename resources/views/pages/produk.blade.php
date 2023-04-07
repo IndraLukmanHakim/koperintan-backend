@@ -46,19 +46,12 @@
               </div>
             </div>
             <div class="col-md-3 mb-4">
-              <div class="form-floating">
-                <select class="form-select @error('categories_id') is-invalid @enderror" id="categories_id" name="categories_id">
-                  @foreach ($categories as $category)
-                  <option value="{{ $category->id }}" {{ old('categories_id') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
-                  @endforeach
-                </select>
-                <label for="categories_id">Kategori</label>
-                @error('categories_id')
-                <div class="invalid-feedback">
-                  {{ $message }}
-                </div>
-                @enderror
-              </div>
+              <input class="form-control" list="datalistkategori" name="categories_id" id="kategori" placeholder="Kategori">
+              <datalist id="datalistkategori">
+                @foreach ($categories as $category)
+                  <option value="{{ $category->name }}">
+                @endforeach
+              </datalist>
             </div>
             <div class="col-md-12 mb-4">
               <div class="form-floating">
@@ -105,6 +98,7 @@
                     <th>Kategory</th>
                     <th>Description</th>
                     <th>Price</th>
+                    <th>Poin</th>
                     <th>Aksi</th>
                   </tr>
                 </thead>
@@ -118,6 +112,7 @@
                     <td>
                       Rp. {{ number_format($product->price, 0, ',', '.') }}
                     </td>
+                    <td>{{ $product->point }}</td>
                     <td>
                       <button type="button" class="btn btn-sm btn-primary btn-edit" data-id="{{ $product->id }}">
                         <i class="fa fa-edit"></i>

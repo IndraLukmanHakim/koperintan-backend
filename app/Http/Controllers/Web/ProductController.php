@@ -78,11 +78,24 @@ class ProductController extends Controller
             'photos.required' => 'Foto produk harus diisi',
         ]);
 
+        // cek apakah categories_id ada di table product_categories find and fail
+        $productCategory = ProductCategory::where("name", $request->categories_id)->first();
+
+        // kalau categories_id tidak ada di table product_categories maka tambahkan categories_id baru
+        if (!$productCategory) {
+            $categori = ProductCategory::create([
+                'name' => $request->categories_id,
+            ]);
+            $productCategory = $categori->id;
+        } else {
+            $productCategory = $productCategory->id;
+        }
+
         $product = Product::create([
             'name' => $request->name,
             'price' => $request->price,
             'description' => $request->description,
-            'categories_id' => $request->categories_id,
+            'categories_id' => $productCategory,
             'point' => $request->point,
         ]);
 
