@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
@@ -26,6 +28,12 @@ class TransactionController extends Controller
   {
     $transaction->status = $request->status;
     $transaction->save();
+
+    if ($request->status == "Selesai") {
+      User::find($transaction->user->id)->update([
+        'point' => $transaction->user->point + $transaction->total_point
+      ]);
+    }
 
     return true;
   }

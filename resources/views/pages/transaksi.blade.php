@@ -109,7 +109,7 @@
           data: {
             id: id,
             status: status,
-            _token: "{{ csrf_token() }}"
+            _token: "{{ csrf_token() }}",
           },
           success: function (response) {
             Swal.fire({
