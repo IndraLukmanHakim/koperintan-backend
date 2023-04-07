@@ -2,14 +2,21 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Exports\TransactionExport;
 use App\Http\Controllers\Controller;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TransactionController extends Controller
 {
+  public function export()
+  {
+    return Excel::download(new TransactionExport, 'transactions.xlsx');
+  }
+
   public function index()
   {
     $status = [

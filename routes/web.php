@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get("/export", [TransactionController::class, 'export']);
+
 Route::get("/login", [AuthController::class, 'login'])->name('login');
 Route::post("/login", [AuthController::class, 'loginAuth'])->middleware('guest');
 
