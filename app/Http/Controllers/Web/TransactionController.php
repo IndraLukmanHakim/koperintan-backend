@@ -33,6 +33,8 @@ class TransactionController extends Controller
       User::find($transaction->user->id)->update([
         'point' => $transaction->user->point + $transaction->total_point
       ]);
+
+      return response()->json('selesai');
     }
 
     return true;

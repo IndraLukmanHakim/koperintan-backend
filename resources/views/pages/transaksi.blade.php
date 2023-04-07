@@ -46,7 +46,7 @@
                     <td>Rp. {{ number_format($transaction->total_price, 0, ',', '.') }}</td>
                     <td>{{ $transaction->total_point }}</td>
                     <td>
-                      <select name="status" class="form-control select-status" data-id="{{ $transaction->id }}">
+                      <select name="status" class="form-control select-status" data-id="{{ $transaction->id }}" @if($transaction->status == "Selesai") disabled @endif>
                         @foreach ($status as $s)
                           <option value="{{ $s }}" {{ $transaction->status == $s ? 'selected' : '' }}>{{ $s }}</option>
                         @endforeach
@@ -112,6 +112,7 @@
             _token: "{{ csrf_token() }}",
           },
           success: function (response) {
+            console.log(response);
             Swal.fire({
               title: 'Sukses',
               text: "Status berhasil diubah",
@@ -119,6 +120,9 @@
               showConfirmButton: false,
               timer: 1500
             });
+            if (response == 'selesai') {
+              $('.select-status').attr('disabled', 'disabled');
+            }
           },
         });
       });
