@@ -36,9 +36,9 @@
             </div>
             <div class="col-md-3 mb-4">
               <div class="form-floating">
-                <input type="text" class="form-control @error('tags') is-invalid @enderror" id="tags" name="tags" placeholder="Tags" value="{{ old('tags') }}">
-                <label for="tags">Tags</label>
-                @error('tags')
+                <input type="text" class="form-control @error('point') is-invalid @enderror" id="point" name="point" placeholder="Point" value="{{ old('point') }}">
+                <label for="point">Point</label>
+                @error('point')
                 <div class="invalid-feedback">
                   {{ $message }}
                 </div>

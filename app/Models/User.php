@@ -28,6 +28,7 @@ class User extends Authenticatable
         'nopol',
         'password',
         'phone',
+        'point',
     ];
 
     /**

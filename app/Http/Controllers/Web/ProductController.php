@@ -66,7 +66,7 @@ class ProductController extends Controller
             'price' => 'required|numeric',
             'description' => 'required',
             'categories_id' => 'required',
-            'tags' => 'required',
+            'point' => 'required',
             'photos' => 'required',
         ], [
             'name.required' => 'Nama produk harus diisi',
@@ -74,7 +74,7 @@ class ProductController extends Controller
             'price.numeric' => 'Harga produk harus berupa angka',
             'description.required' => 'Deskripsi produk harus diisi',
             'categories_id.required' => 'Kategori produk harus diisi',
-            'tags.required' => 'Tag produk harus diisi',
+            'point.required' => 'Tag produk harus diisi',
             'photos.required' => 'Foto produk harus diisi',
         ]);
 
@@ -83,8 +83,7 @@ class ProductController extends Controller
             'price' => $request->price,
             'description' => $request->description,
             'categories_id' => $request->categories_id,
-            'tags' => $request->tags,
-            'point' => $request->price,
+            'point' => $request->point,
         ]);
 
         for ($i = 0; $i < count($request->photos); $i++) {

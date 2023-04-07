@@ -30,6 +30,12 @@ class UserController extends Controller
                 <label for='phone'>Phone</label>
             </div>
         </div>
+        <div class='validation-container mb-4'>
+            <div class='form-floating'>
+                <input type='text' class='form-control' id='point' name='point_update' placeholder='Point' value='$user->point'>
+                <label for='point'>Point</label>
+            </div>
+        </div>
         ";
         return response()->json($html);
     }
@@ -65,15 +71,18 @@ class UserController extends Controller
         $request->validate([
             'name_update' => 'required',
             'phone_update' => 'required',
+            'point_update' => 'required',
         ], [
             'name_update.required' => 'Nama tidak boleh kosong',
             'nopol_update.required' => 'Nopol tidak boleh kosong',
+            'point_update.required' => 'Point tidak boleh kosong',
         ]);
 
         $user = User::find($request->id);
         $user->update([
             'name' => $request->name_update,
             'phone' => $request->phone_update,
+            'point' => $request->point_update,
         ]);
 
         return redirect()->back()->with('success', 'User berhasil diubah');
