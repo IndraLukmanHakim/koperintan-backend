@@ -44,6 +44,12 @@ class ProductController extends Controller
             </div>
         </div>
         <div class='validation-container mb-4'>
+            <div class='form-floating'>
+                <input type='text' class='form-control' id='point' name='point' placeholder='Point' value='$product->point'>
+                <label for='point'>Point</label>
+            </div>
+        </div>
+        <div class='validation-container mb-4'>
             <div class='input-group'>
                 <span class='input-group-text'>Rp</span>
                 <input type='number' class='form-control' id='price' name='price' placeholder='Harga' value='$product->price'>
@@ -114,11 +120,13 @@ class ProductController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'point' => 'required',
             'price' => 'required|numeric',
             'description' => 'required',
             'categories_id' => 'required',
         ], [
             'name.required' => 'Nama produk harus diisi',
+            'point.required' => 'Tag produk harus diisi',
             'price.required' => 'Harga produk harus diisi',
             'price.numeric' => 'Harga produk harus berupa angka',
             'description.required' => 'Deskripsi produk harus diisi',
@@ -128,6 +136,7 @@ class ProductController extends Controller
         $product = Product::find($request->id);
         $product->update([
             'name' => $request->name,
+            'point' => $request->point,
             'price' => $request->price,
             'description' => $request->description,
             'categories_id' => $request->categories_id,

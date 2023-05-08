@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             $table->integer('point')->after('price')->default(0);
-            //
         });
     }
 

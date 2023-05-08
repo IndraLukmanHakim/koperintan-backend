@@ -9,12 +9,17 @@
       <div class="card-header bg-white">
         <h4 class="card-title">Transaksi List</h4>
         <div class="card-tools">
-          <form action="{{ url('transaksi/export') }}" method="GET">
+          <form action="{{ url('transaksi/export') }}" method="GET" class="d-inline">
             @csrf
             <button type="submit" class="btn btn-sm btn-info">
               <i class="fa fa-download"></i> Export
             </button>
           </form>
+          |
+          {{-- button tambah --}}
+          <a href="{{ url('transaksi/create') }}" class="btn btn-sm btn-primary">
+            <i class="fa fa-plus"></i> Tambah
+          </a>
         </div>
       </div>
       {{-- <div class="card-header bg-white">
