@@ -11,16 +11,15 @@ class DashboardController extends Controller
     public function index()
     {
         $status = [
-            "Pending",
-            "Shipping",
-            "Cancelled",
-            "Failed",
-            "Selesai"
+            "Dalam Proses",
+            "Pengiriman",
+            "Gagal",
+            "Selesai",
         ];
 
         $transaksi = [
-            "menunggu" => Transaction::where('status', "Pending")->count(),
-            "pengiriman" => Transaction::where('status', "Shipping")->count(),
+            "menunggu" => Transaction::where('status', "Dalam Proses")->count(),
+            "pengiriman" => Transaction::where('status', "Pengiriman")->count(),
             "selesai" => Transaction::where('status', "Selesai")->count(),
         ];
         return view('dashboard', compact('transaksi'));

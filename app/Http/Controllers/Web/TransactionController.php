@@ -21,11 +21,10 @@ class TransactionController extends Controller
   public function index()
   {
     $status = [
-      "Pending",
-      "Shipping",
-      "Cancelled",
-      "Failed",
-      "Selesai"
+      "Dalam Proses",
+      "Pengiriman",
+      "Gagal",
+      "Selesai",
     ];
 
     $transactions = Transaction::with('user', 'items', 'items.product')->get();

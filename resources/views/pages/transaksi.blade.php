@@ -73,10 +73,18 @@
                       </button> --}}
                       <form class="d-inline" action="/transaksi/invoice/{{ $transaction->id }}" method="POST">
                         @csrf
-                        <button type="submit" class="btn btn-sm btn-danger btn-invoice" data-id="{{ $transaction->id }}">
+                        <button type="submit" class="btn btn-sm btn-primary btn-invoice" data-id="{{ $transaction->id }}">
                           <i class="fa fa-download"></i>
                         </button>
                       </form>
+                      @if($transaction->status !== "Selesai")
+                      <form class="d-inline" action="/transaksi/delete/{{ $transaction->id }}" method="POST">
+                        @csrf
+                        <button type="button" class="btn btn-sm btn-danger btn-hapus" data-id="{{ $transaction->id }}">
+                          <i class="fa fa-trash"></i>
+                        </button>
+                      </form>
+                      @endif
                     </td>
                   </tr>
                   @endforeach
@@ -137,6 +145,7 @@
             });
             if (response == 'selesai') {
               $('.select-status').attr('disabled', 'disabled');
+              $('.btn-hapus').hide();
             }
           },
         });
