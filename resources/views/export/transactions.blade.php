@@ -3,6 +3,8 @@
   <tr>
       <th>Tanggal</th>
       <th>Nama Pembeli</th>
+      <th>Alamat</th>
+      <th>No Telepon</th>
       <th>Nopol</th>
       <th>Barang yang Dibeli</th>
       <th>Nominal Transaksi</th>
@@ -14,6 +16,8 @@
     <tr>
       <td>{{ $transaction->created_at }}</td>
       <td>{{ $transaction->user->name }}</td>
+      <td>{{ $transaction->address }}</td>
+      <td>{{ $transaction->user->phone }}</td>
       <td>{{ $transaction->user->nopol }}</td>
       <td>
         <ul style="list-style-type: none;">

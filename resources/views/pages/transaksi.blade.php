@@ -36,7 +36,9 @@
                     <th>Total Harga</th>
                     <th>Poin</th>
                     <th>Status</th>
+                    <th>Tanggal</th>
                     <th>Aksi</th>
+
                   </tr>
                 </thead>
                 <tbody>
@@ -64,6 +66,7 @@
                         @endforeach
                       </select>
                     </td>
+                    <td>{{ $transaction->created_at  }}</td>
                     <td >
                       {{-- <button type="button" class="btn btn-sm btn-primary btn-show" data-id="{{ $transaction->id }}">
                         <i class="fa fa-eye"></i>

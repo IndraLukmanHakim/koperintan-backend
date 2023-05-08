@@ -18,7 +18,8 @@ class ProductGallery extends Model
 
     public function getUrlAttribute($url)
     {
-        return "http://localhost:8000" . Storage::url($url);
+        // return "http://localhost:8000" . Storage::url($url);
+        return "http://192.168.144.108:8000" . Storage::url($url);
 
         // RETURN GALLERY URL LOCAL
         // return config('app.url') . Storage::url($url);
